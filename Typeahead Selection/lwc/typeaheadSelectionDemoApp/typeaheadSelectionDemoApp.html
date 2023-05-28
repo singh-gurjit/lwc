@@ -1,0 +1,55 @@
+<template>
+    <section style="display: flex;
+    flex-direction: column;
+    margin: 0 2rem 2rem;">
+
+        <br>
+        <c-typeahead-selection options={optionsArray1} place-holder="Without label and icon"></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection options={optionsArray1} icon-name="standard:contact"
+            place-holder="Without label and with icon"></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Please select a value" options={optionsArray1} icon-name="standard:contact"
+            place-holder="With label and icon"></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Please select a value" options={optionsArray1} icon-name="standard:contact"
+            place-holder="With label, icon and required asterisk" is-required="true"></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Options with sub label" options={optionsArray2} icon-name="standard:contact"
+            place-holder="Please select a value"></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Options with two sub labels" options={optionsArray3} icon-name="standard:contact"
+            place-holder="Please select a value"></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Searching contacts from server side" options={contactOptions}
+            icon-name="standard:contact" place-holder="Please select a contact" show-spinner={showSpinner}
+            oninputchange={handleContactChange}></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Action icon at the end" action-icon-label="Add New" action-icon-name="utility:add"
+            action-help-text="Create new Contact" options={optionsArray2} icon-name="standard:contact"
+            place-holder="Please select a value" onactionclick={handleActionClick}></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Disabled variant" options={optionsArray1} icon-name="standard:contact"
+            place-holder="With label, icon and required asterisk" value="Ford"
+            is-disabled="true"></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Tool-tip variant" options={optionsArray1} icon-name="standard:contact"
+            place-holder="Please select an option" value="Ford" onselect={handleValueSelect}
+            tooltip-detail={tooltipDetail}></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Disabled tool-tip variant" options={optionsArray1} icon-name="standard:contact"
+            place-holder="Please select an option" value="Ford" onselect={handleValueSelect} is-disabled="true"
+            tooltip-detail={tooltipDetail}></c-typeahead-selection>
+        <br>
+    </section>
+</template>

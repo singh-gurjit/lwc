@@ -1,0 +1,95 @@
+<template>
+    <div class="slds-form-element slds-is-relative">
+        <label class="slds-form-element__label" for="combobox-id-3" lwc:if={label}>
+            <span style="color:red" lwc:if={isRequired}>*</span> {label}
+        </label>
+        <!-- tool-tip details -->
+        <template lwc:if={showTooltipDetail}>
+            <section class={anchorSelector}>
+                <div lwc:if={iconName}>
+                    <lightning-icon icon-name={iconName} size="small" class="brand-theme-icon"></lightning-icon>
+                </div>
+                <div class="selected-anchor-value">
+                    <a>{searchBarValue}</a>
+                </div>
+                <div class="tool-tip">
+                    <lightning-icon class="brand-theme-icon" icon-name={iconName} size="small">
+                    </lightning-icon>
+                    <span class="tooltip-header">{value}</span>
+                    <p lwc:if={tooltipData.label1}><strong>{tooltipData.label1}</strong> :
+                        {tooltipData.value1}</p>
+                    <p lwc:if={tooltipData.label2}><strong>{tooltipData.label2}</strong> : {tooltipData.value2}</p>
+                    <p lwc:if={tooltipData.label3}><strong>{tooltipData.label3}</strong> : {tooltipData.value3}</p>
+                    <p lwc:if={tooltipData.label4}><strong>{tooltipData.label4}</strong> : {tooltipData.value4}</p>
+                    <p lwc:if={tooltipData.label5}><strong>{tooltipData.label5}</strong> : {tooltipData.value5}</p>
+                    <p lwc:if={tooltipData.label6}><strong>{tooltipData.label6}</strong> : {tooltipData.value6}</p>
+                </div>
+                <div class="anchor-tag-close-icon" lwc:if={showRemoveIcon}>
+                    <lightning-icon icon-name="utility:close" size="x-small"
+                        onclick={handleRemoveValue}></lightning-icon>
+                </div>
+            </section>
+        </template>
+        <!--End of tool-tip details -->
+        <template lwc:else>
+            <div class={sldsFormElementSelector}>
+                <template lwc:if={iconName}>
+                    <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_left">
+                        <template lwc:if={valueSelected}>
+                            <lightning-icon icon-name={iconName} size="small" class="brand-theme-icon"></lightning-icon>
+                            &nbsp;
+                        </template>
+                        <template lwc:else>
+                            <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
+                        </template>
+                    </button>
+                </template>
+
+                <input type="search" data-id="combo-input" autocomplete="off" class={inputSelector} role="textbox"
+                    placeholder={placeHolder} value={searchBarValue} oninput={handleInputChange} required
+                    disabled={isDisableInput} onfocus={handleSearchBarFocus} />
+                <div class="dropdown">
+                    <template for:each={optionsToDisplay} for:item="option">
+                        <section class="option-container" key={option.value} data-id={option.value}
+                            onclick={handleSelectOption}>
+                            <div class="option-icon" lwc:if={iconName}>
+                                <lightning-icon class="brand-theme-icon " icon-name={iconName} size="small"
+                                    data-id={option.value}>
+                                </lightning-icon>
+                            </div>
+                            <div data-id={option.value}>
+                                <p class="option-label">{option.label}</p>
+                                <p lwc:if={option.subLabel}>{option.subLabel}</p>
+                                <p lwc:if={option.subLabel2}>{option.subLabel2}</p>
+
+                            </div>
+                        </section>
+                    </template>
+                    <div lwc:if={actionIconLabel} class="slds-align_absolute-center">
+                        <lightning-button icon-name={actionIconName} label={actionIconLabel} variant="base"
+                            onclick={handleActionClick}>
+                        </lightning-button>
+                        <template lwc:if={actionHelpText}>
+                            <lightning-helptext content={actionHelpText}>
+                            </lightning-helptext>
+                        </template>
+                    </div>
+                </div>
+                <div lwc:if={showSpinner} class=" slds-input__icon slds-input__icon_right">
+                    <div role="status" class="slds-spinner slds-spinner_x-small slds-spinner_brand">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+                <template lwc:if={showRemoveIcon}>
+                    <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Clear"
+                        onclick={handleRemoveValue}>
+                        <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                        <span class="slds-assistive-text">Clear</span>
+                    </button>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

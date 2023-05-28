@@ -1,0 +1,111 @@
+.remove-disable-style:disabled {
+    background-color: transparent;
+    color: inherit;
+    cursor: default;
+}
+
+.option-container {
+    display: flex;
+    padding-bottom: 0.5rem;
+}
+
+.option-container:hover {
+    cursor: pointer;
+}
+
+.option-icon {
+    margin: 0.45rem 0.75rem 0 0;
+}
+
+.option-label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.brand-theme-icon {
+    --sds-c-icon-color-background: hsl(213, 94%, 62%);
+    --sds-c-icon-color-foreground: white;
+    --sds-c-icon-color-foreground-default: white;
+}
+
+.tool-tip {
+    position: absolute;
+    padding: 1rem;
+    border-radius: 5px;
+    max-height: 0;
+    width: 17.5rem;
+    bottom: 61%;
+    box-shadow: 0 0 5px;
+    background: #fff;
+    opacity: 0;
+    z-index: 99;
+    transition: max-height 0.3s cubic-bezier(.17, .67, .83, .67), opacity .3s ease-in-out;
+}
+
+.tool-tip::after {
+    content: '';
+    position: absolute;
+    left: 15%;
+    bottom: 0;
+    border: 7px solid transparent;
+    border-top: 8px solid #fff;
+    transform: translate(-50%, 100%);
+}
+
+.tool-tip-input-box .selected-anchor-value:hover+.tool-tip {
+    opacity: 1;
+    max-height: 1000px;
+    z-index: 9999;
+}
+
+.tool-tip-input-box {
+    display: flex;
+    border: 1px solid lightgray;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+}
+
+.selected-anchor-value {
+    padding-left: .5rem;
+    z-index: 999;
+}
+
+.tooltip-header {
+    font-weight: 600;
+    font-size: 1rem;
+    padding-left: .5rem;
+}
+
+.anchor-tag-close-icon {
+    margin-left: auto;
+}
+
+.anchor-tag-close-icon:hover {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    max-height: 0;
+    overflow: auto;
+    padding: 0.5rem;
+    opacity: 0;
+    width: 100%;
+    box-shadow: 0 0 5px;
+    background: #fff;
+    z-index: 9999;
+    transition: max-height 0.3s cubic-bezier(.17, .67, .83, .67), opacity .3s ease-in-out;
+}
+
+.slds-form-element__control input[type="search"]:focus+.dropdown {
+    opacity: 1;
+    max-height: 12rem;
+}
+
+.disabled {
+    background-color: #f3f3f3;
+}
+
+.disabled:hover {
+    cursor: not-allowed;
+}
