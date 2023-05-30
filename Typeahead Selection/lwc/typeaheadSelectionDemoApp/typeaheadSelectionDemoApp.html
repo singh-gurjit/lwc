@@ -1,7 +1,7 @@
 <template>
     <section style="display: flex;
     flex-direction: column;
-    margin: 0 2rem 2rem;">
+    margin: 2rem;">
 
         <br>
         <c-typeahead-selection options={optionsArray1} place-holder="Without label and icon"></c-typeahead-selection>
@@ -42,9 +42,16 @@
             is-disabled="true"></c-typeahead-selection>
 
         <br>
-        <c-typeahead-selection label="Tool-tip variant" options={optionsArray1} icon-name="standard:contact"
-            place-holder="Please select an option" value="Ford" onselect={handleValueSelect}
-            tooltip-detail={tooltipDetail}></c-typeahead-selection>
+
+        <c-typeahead-selection label="Tool-tip variant with bottom position" options={optionsArray1}
+            icon-name="standard:contact" place-holder="Please select an option" value="Ford"
+            onselect={handleValueSelect} tooltip-detail={tooltipDetail}
+            tooltip-position="bottom"></c-typeahead-selection>
+
+        <br>
+        <c-typeahead-selection label="Tool-tip variant with default position" options={optionsArray1}
+            icon-name="standard:contact" place-holder="Please select an option" value="Ford"
+            onselect={handleValueSelect} tooltip-detail={tooltipDetail}></c-typeahead-selection>
 
         <br>
         <c-typeahead-selection label="Disabled tool-tip variant" options={optionsArray1} icon-name="standard:contact"

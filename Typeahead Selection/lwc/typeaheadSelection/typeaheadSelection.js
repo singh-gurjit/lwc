@@ -3,7 +3,7 @@
  * @description Renders Custom look up.
  */
 
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, api, track } from 'lwc'
 
 export default class TypeaheadSelection extends LightningElement {
 
@@ -45,6 +45,7 @@ export default class TypeaheadSelection extends LightningElement {
         this.populateTooltipData()
     }
 
+    @api tooltipPosition
     @api placeHolder
     @api label = ''
     @api iconName
@@ -58,6 +59,10 @@ export default class TypeaheadSelection extends LightningElement {
     @api actionHelpText
 
     // End of public properties
+
+    get tooltipSelector() {
+        return this.tooltipPosition == 'bottom' ? 'tool-tip tool-tip-bottom' : 'tool-tip tool-tip-top'
+    }
 
     get sldsFormElementSelector() {
         return this.iconName ? 'slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right' :
@@ -91,7 +96,7 @@ export default class TypeaheadSelection extends LightningElement {
         this.tooltipData = {}
         let index = 1
         for (const key in this.tooltipDetail) {
-
+            if (key == 'urlTonavigate') { continue }
             this.tooltipData['label' + index] = key
             this.tooltipData['value' + index] = this.tooltipDetail[key]
             ++index
@@ -131,6 +136,13 @@ export default class TypeaheadSelection extends LightningElement {
     handleSearchBarFocus() {
 
         this.optionsToDisplay = this.searchBarValue ? [...this.getSelectedOptions(this.searchBarValue)] : [...this.options]
+    }
+
+    handleNavigateToUrl() {
+
+        const url = this.tooltipDetail.urlTonavigate
+        if (!url) { return }
+        window.open(`/${url}`)
     }
 
     handleRemoveValue() {

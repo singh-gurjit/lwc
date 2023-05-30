@@ -29,37 +29,61 @@
 }
 
 .tool-tip {
-    position: absolute;
+    position: fixed;
     padding: 1rem;
     border-radius: 5px;
     max-height: 0;
     width: 17.5rem;
-    bottom: 61%;
+    bottom: 100%;
+    left: -500%;
     box-shadow: 0 0 5px;
     background: #fff;
     opacity: 0;
-    z-index: 99;
-    transition: max-height 0.3s cubic-bezier(.17, .67, .83, .67), opacity .3s ease-in-out;
+    z-index: 9;
+    pointer-events: none;
+    transition: max-height .3s cubic-bezier(.17, .67, .83, .67), opacity .3s ease-in-out;
 }
 
-.tool-tip::after {
+.tool-tip-bottom {
+    top: 100%;
+    bottom: auto;
+}
+
+.tool-tip-bottom::after {
     content: '';
     position: absolute;
-    left: 15%;
+    left: 10%;
+    top: -0.9rem;
+    border: 7px solid transparent;
+    border-bottom: 8px solid #fff;
+}
+
+.tool-tip-top::after {
+    content: '';
+    position: absolute;
+    left: 12%;
     bottom: 0;
     border: 7px solid transparent;
     border-top: 8px solid #fff;
     transform: translate(-50%, 100%);
 }
 
+.tool-tip p {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
 .tool-tip-input-box .selected-anchor-value:hover+.tool-tip {
+    position: absolute;
     opacity: 1;
     max-height: 1000px;
-    z-index: 9999;
+    left: auto;
 }
 
 .tool-tip-input-box {
     display: flex;
+    position: relative;
     border: 1px solid lightgray;
     padding: 0.25rem;
     border-radius: 0.25rem;
@@ -67,7 +91,12 @@
 
 .selected-anchor-value {
     padding-left: .5rem;
-    z-index: 999;
+    color: cornflowerblue;
+}
+
+.selected-anchor-value:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .tooltip-header {
@@ -93,7 +122,7 @@
     width: 100%;
     box-shadow: 0 0 5px;
     background: #fff;
-    z-index: 9999;
+    z-index: 999;
     transition: max-height 0.3s cubic-bezier(.17, .67, .83, .67), opacity .3s ease-in-out;
 }
 
