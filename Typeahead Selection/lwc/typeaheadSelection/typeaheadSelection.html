@@ -2,8 +2,16 @@
     <label class="slds-form-element__label" for="combobox-id-3" lwc:if={label}>
         <span style="color:red" lwc:if={isRequired}>*</span> {label}
     </label>
+    <template lwc:if={readOnly}>
+        <div class="read-only-input-text">
+            <template lwc:if={iconName}>
+                <lightning-icon icon-name={iconName} size="small" class="brand-theme-icon"></lightning-icon>
+            </template>
+            <div class="slds-var-p-left_small">{searchBarValue}</div>
+        </div>
+    </template>
     <!-- tool-tip details -->
-    <template lwc:if={showTooltipDetail}>
+    <template lwc:elseif={showTooltipDetail}>
         <section class={anchorSelector}>
             <div lwc:if={iconName}>
                 <lightning-icon icon-name={iconName} size="small" class="brand-theme-icon"></lightning-icon>
@@ -48,14 +56,7 @@
             <input type="search" data-id="combo-input" autocomplete="off" class={inputSelector} role="textbox"
                 placeholder={placeHolder} value={searchBarValue} oninput={handleInputChange} required
                 disabled={isDisableInput} onfocus={handleSearchBarFocus} />
-            <div class="dropdown">
-                <template iterator:it={array}>
-                    <div key={it.value.Id}>
-                        <div if:true={it.first}></div>
-                        {it.value.Name}
-
-                    </div>
-                </template>
+            <div class="dropdown" onmousedown={handleDropdownMouseDown}>
                 <template iterator:option={optionsToDisplay}>
                     <section class="option-container" key={option.value.value} data-id={option.value.value}
                         onclick={handleSelectOption}>

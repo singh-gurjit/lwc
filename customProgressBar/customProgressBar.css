@@ -1,0 +1,27 @@
+.container {
+    overflow: hidden;
+    position: fixed;
+    width: 60vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    color: hsl(207, 94%, 43%);
+    z-index: 99999;
+}
+
+.bar {
+    margin-left: 4px;
+    height: 36px;
+    width: 0;
+    border-radius: 5px;
+    background-color: hsl(207, 94%, 90%);
+    transition: width .5s linear, background-color 3s;
+}
+
+.bar-extended-med {
+    background-color: hsl(207, 94%, 70%);
+}
+
+.bar-extended-final {
+    background-color: hsl(207, 94%, 43%);
+}

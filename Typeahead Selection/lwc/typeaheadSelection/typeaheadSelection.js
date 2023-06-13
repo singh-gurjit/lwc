@@ -26,6 +26,7 @@ export default class TypeaheadSelection extends LightningElement {
     }
     set options(value) {
         this._option = value
+        this.optionsToDisplay = [...value]
     }
 
     @api
@@ -52,6 +53,7 @@ export default class TypeaheadSelection extends LightningElement {
     @api showSpinner
     @api showExpandSearch
     @api searchId
+    @api readOnly
     @api isDisabled
     @api isRequired
     @api actionIconLabel
@@ -158,15 +160,22 @@ export default class TypeaheadSelection extends LightningElement {
         setTimeout(() => this.template.querySelector('input').focus())
     }
 
-    handleSelectOption(event) {
+    handleDropdownMouseDown() {
+        if (this.searchBarValue) { return }
+        setTimeout(() => {
+            this.template.querySelector('input').focus()
+        })
+    }
 
+    handleSelectOption(event) {
         const selectedValue = event.currentTarget.dataset.id
 
-        this.valueSelected = true
-        this.disableInput = true
         this.selectedOption = { ...this.getSelectedOption(selectedValue) }
         const detail = this.selectedOption
         detail.id = this.searchId
+
+        this.valueSelected = true
+        this.disableInput = true
         this.value = detail.label
         this.searchBarValue = detail.label
         this.searchBarValue = detail.label

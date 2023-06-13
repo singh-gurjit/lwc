@@ -1,0 +1,13 @@
+<template>
+    <section class="wait-message" style={messageStyle}>
+        <div>{message}</div>
+        <div class="dots-bars"></div>
+    </section>
+    <!-- Needed to create custom backdrop as the standard one doesn't work on  experience cloud -->
+    <template lwc:if={isCustomBackdrop}>
+        <div class="backdrop"></div>
+    </template>
+    <template lwc:else>
+        <div class="slds-spinner_container"> </div>
+    </template>
+</template>

@@ -1,0 +1,87 @@
+.backdrop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 9999;
+    background: rgba(255, 255, 255, .5);
+    margin: -2rem;
+}
+
+.wait-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 600;
+    color: rgb(0, 112, 210);
+    font-size: 1rem;
+    z-index: 999999;
+    display: flex;
+    transition: all 2s ease
+}
+
+.dots-bars {
+    width: 40px;
+    height: 20px;
+    --c: radial-gradient(farthest-side, currentColor 93%, #0000);
+    background:
+        var(--c) 0 0,
+        var(--c) 50% 0,
+        var(--c) 100% 0;
+    background-size: 8px 8px;
+    background-repeat: no-repeat;
+    position: relative;
+    animation: db-0 1s linear infinite alternate;
+    margin: 1rem 0.75rem;
+}
+
+.dots-bars:before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    background: currentColor;
+    left: 0;
+    top: 0;
+    animation:
+        db-1 1s linear infinite alternate,
+        db-2 0.5s cubic-bezier(0, 200, .8, 200) infinite;
+}
+
+@keyframes db-0 {
+    0% {
+        background-position: 0 100%, 50% 0, 100% 0
+    }
+
+    8%,
+    42% {
+        background-position: 0 0, 50% 0, 100% 0
+    }
+
+    50% {
+        background-position: 0 0, 50% 100%, 100% 0
+    }
+
+    58%,
+    92% {
+        background-position: 0 0, 50% 0, 100% 0
+    }
+
+    100% {
+        background-position: 0 0, 50% 0, 100% 100%
+    }
+}
+
+@keyframes db-1 {
+    100% {
+        left: calc(100% - 8px)
+    }
+}
+
+@keyframes db-2 {
+    100% {
+        top: -0.1px
+    }
+}
