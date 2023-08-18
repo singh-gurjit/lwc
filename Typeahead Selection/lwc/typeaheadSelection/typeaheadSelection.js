@@ -16,7 +16,7 @@ export default class TypeaheadSelection extends LightningElement {
     valueSelected
     _value = ''
     _option = []
-
+    showConfirmModal
 
     //Public properties
     //Pass option as an array of objects with lable and value same as lightning-combobox options
@@ -59,6 +59,7 @@ export default class TypeaheadSelection extends LightningElement {
     @api actionIconLabel
     @api actionIconName
     @api actionHelpText
+    @api confirmRemoveMessage
 
     // End of public properties
 
@@ -72,19 +73,19 @@ export default class TypeaheadSelection extends LightningElement {
     }
 
     get anchorSelector() {
-        return this.isDisabled ? 'tool-tip-input-box disabled' : 'tool-tip-input-box'
+        return this.readOnly ? 'tool-tip-input-box read-only' : this.isDisabled ? 'tool-tip-input-box disabled' : 'tool-tip-input-box'
     }
 
     get showRemoveIcon() {
-        return !this.isDisabled && this.disableInput && this.value
+        return !this.readOnly && !this.isDisabled && this.disableInput && this.value
     }
 
     get inputSelector() {
-        return this.isDisabled && this.value ? 'slds-input' : 'slds-input remove-disable-style'
+        return this.isDisabled ? 'slds-input' : 'slds-input remove-disable-style'
     }
 
     get isDisableInput() {
-        return Boolean(this.isDisabled && this.value) || this.disableInput
+        return Boolean(this.isDisabled) || this.disableInput
     }
 
     get showTooltipDetail() {
@@ -148,6 +149,26 @@ export default class TypeaheadSelection extends LightningElement {
     }
 
     handleRemoveValue() {
+
+        if (this.confirmRemoveMessage) {
+            this.showConfirmModal = true
+        } else {
+            this.removeValue()
+        }
+    }
+
+    handleCloseRemoveConfirmModal(event) {
+
+        this.showConfirmModal = false
+
+        const isRemoveValue = event.detail
+
+        if (isRemoveValue) {
+            this.removeValue()
+        }
+    }
+
+    removeValue() {
         this.value = ''
         this.searchBarValue = ''
         this.disableInput = false

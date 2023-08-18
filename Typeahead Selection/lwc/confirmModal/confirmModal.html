@@ -1,0 +1,20 @@
+<template>
+    <section class="container-section">
+        <lightning-icon icon-name="utility:close" variant="bare" size="small" class="close-icon"
+            onclick={handleCloseModal}>
+        </lightning-icon>
+        <header>{headerLabel}</header>
+        <main style={mainSelector}>
+            <slot></slot>
+        </main>
+        <footer class="slds-modal__footer">
+            <lightning-button label="No" icon-name="utility:close" variant="brand-outline" data-id="No"
+                onclick={handleCloseModal}>
+            </lightning-button>
+            <lightning-button label="Yes" icon-name="utility:check" variant="brand" class="slds-var-m-left_small"
+                data-id="Yes" onclick={handleCloseModal}>
+            </lightning-button>
+        </footer>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

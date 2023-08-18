@@ -1,17 +1,18 @@
 <template>
+
+    <template lwc:if={showConfirmModal}>
+        <c-confirm-modal header-label="Confirm" onclose={handleCloseRemoveConfirmModal}>
+            <strong class="slds-align_absolute-center">
+                {confirmRemoveMessage}
+            </strong>
+        </c-confirm-modal>
+    </template>
+
     <label class="slds-form-element__label" for="combobox-id-3" lwc:if={label}>
         <span style="color:red" lwc:if={isRequired}>*</span> {label}
     </label>
-    <template lwc:if={readOnly}>
-        <div class="read-only-input-text">
-            <template lwc:if={iconName}>
-                <lightning-icon icon-name={iconName} size="small" class="brand-theme-icon"></lightning-icon>
-            </template>
-            <div class="slds-var-p-left_small">{searchBarValue}</div>
-        </div>
-    </template>
     <!-- tool-tip details -->
-    <template lwc:elseif={showTooltipDetail}>
+    <template lwc:if={showTooltipDetail}>
         <section class={anchorSelector}>
             <div lwc:if={iconName}>
                 <lightning-icon icon-name={iconName} size="small" class="brand-theme-icon"></lightning-icon>
@@ -71,19 +72,16 @@
                             <p lwc:if={option.value.subLabel2}>{option.value.subLabel2}</p>
                         </div>
                     </section>
-                    <template lwc:if={option.last}>
-                        <div lwc:if={actionIconLabel} class="slds-align_absolute-center" key={option.value.value}>
-                            <lightning-button icon-name={actionIconName} label={actionIconLabel} variant="base"
-                                onclick={handleActionClick}>
-                            </lightning-button>
-                            <template lwc:if={actionHelpText}>
-                                <lightning-helptext content={actionHelpText} class="slds-var-m-left_small">
-                                </lightning-helptext>
-                            </template>
-                        </div>
-                    </template>
                 </template>
-
+                <div lwc:if={actionIconLabel} class="slds-align_absolute-center">
+                    <lightning-button icon-name={actionIconName} label={actionIconLabel} variant="base"
+                        onclick={handleActionClick}>
+                    </lightning-button>
+                    <template lwc:if={actionHelpText}>
+                        <lightning-helptext content={actionHelpText} class="slds-var-m-left_small">
+                        </lightning-helptext>
+                    </template>
+                </div>
 
             </div>
             <div lwc:if={showSpinner} class=" slds-input__icon slds-input__icon_right">

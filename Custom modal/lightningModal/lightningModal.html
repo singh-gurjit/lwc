@@ -1,0 +1,16 @@
+<template>
+    <section class="container-section">
+        <lightning-icon icon-name="utility:close" variant="bare" size="small" class="close-icon" onclick={handleCancel}>
+        </lightning-icon>
+        <header>{headerLabel}</header>
+        <main style={mainSelector}>
+            <slot></slot>
+        </main>
+        <footer class="slds-modal__footer" lwc:if={showFooter}>
+            <lightning-button label="Cancel" icon-name="utility:close" variant="brand-outline"
+                class="slds-var-m-right_small" onclick={handleCancel}>
+            </lightning-button>
+        </footer>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

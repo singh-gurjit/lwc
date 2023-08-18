@@ -33,7 +33,7 @@
     padding: 1rem;
     border-radius: 5px;
     max-height: 0;
-    width: 25rem;
+    width: 24rem;
     bottom: 100%;
     left: -500%;
     box-shadow: 0 0 5px;
@@ -91,7 +91,7 @@
 
 .selected-anchor-value {
     padding-left: .5rem;
-    color: cornflowerblue;
+    color: hsl(207, 99%, 42%);
 }
 
 .selected-anchor-value:hover {
@@ -122,8 +122,8 @@
     width: 100%;
     box-shadow: 0 0 5px;
     background: #fff;
-    z-index: 999;
-    transition: max-height 0.3s cubic-bezier(.17, .67, .83, .67), opacity .3s ease-in-out;
+    z-index: -1;
+    transition: z-index 0.3s ease, max-height 0.3s cubic-bezier(.17, .67, .83, .67), opacity .3s ease-in-out;
     transition-delay: .1s;
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;
@@ -132,10 +132,15 @@
 .slds-form-element__control input[type="search"]:focus+.dropdown {
     opacity: 1;
     max-height: 12rem;
+    z-index: 999;
 }
 
 .disabled {
     background-color: #f3f3f3;
+}
+
+.read-only {
+    border: none;
 }
 
 .disabled:hover {
@@ -163,4 +168,8 @@
 
 .read-only-input-text {
     display: flex;
+}
+
+tr:hover {
+    color: blue;
 }
